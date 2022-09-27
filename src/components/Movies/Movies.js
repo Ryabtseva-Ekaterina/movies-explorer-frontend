@@ -15,7 +15,7 @@ function Movies (props) {
                 <Navigation 
                 isOpen = {props.isOpen}
                 onClose = {props.onClose}/>
-                <button className='header__profile-burger' onClick = {()=>props.onNavigation(true)}/>
+                <button className='header__profile-burger' type='button' onClick = {()=>props.onNavigation(true)}/>
             </Header>
 
             <SearchForm />
@@ -25,7 +25,7 @@ function Movies (props) {
             <MoviesCardList className={'moviesCard__button'}/>
 
             <section className='movies__moreMovies'>
-                <button className='movies__moreMovies-button'>Ещё</button>
+                <button className='movies__moreMovies-button' type='button'>Ещё</button>
             </section>
 
             <Footer />

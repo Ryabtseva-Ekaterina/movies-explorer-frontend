@@ -47,12 +47,12 @@
 .porfolio__nav-link {
     text-decoration: none;
     color: white;
+    display: flex;
+    justify-content: space-between;
 }
 
 .portfolio__link {
     margin: 20px 0 9px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .portfolio__link-text {

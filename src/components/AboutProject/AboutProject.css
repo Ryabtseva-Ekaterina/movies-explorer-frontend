@@ -30,6 +30,7 @@
 
 @media screen and (max-width: 540px) {
     .aboutProject__description{
+        flex-direction: column;
         gap: 56px;
         padding-bottom: 60px;
     }

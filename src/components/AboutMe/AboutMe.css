@@ -2,6 +2,18 @@
     margin: 110px 70px 100px;
 }
 
+@media screen  and (max-width: 768px) {
+    .aboutMe {
+        margin: 110px 70px 100px;
+    }
+}
+
+@media screen  and (max-width: 540px) {
+    .aboutMe {
+        margin: 70px 14px 70px;
+    }
+}
+
 .aboutMe__content{
     margin-top: 66px;
     display: flex;
@@ -83,6 +95,7 @@
 @media screen  and (max-width: 630px) {
     .aboutMe__text {
         font-size: 11px;
+        margin-bottom: 40px;
     }
 }
 

@@ -13,7 +13,7 @@ function SavedMovies (props) {
                 isOpen = {props.isOpen}
                 onClose = {props.onClose}/>
                     
-                <button className='header__profile-burger' onClick = {()=>props.onNavigation(true)}/>
+                <button className='header__profile-burger' onClick = {()=>props.onNavigation(true)} type='button'/>
             </Header>
 
             <SearchForm />

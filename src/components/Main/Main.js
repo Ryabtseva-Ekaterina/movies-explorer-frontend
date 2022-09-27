@@ -20,7 +20,7 @@ function Main () {
             <Header className =" header header-main">
                 <div className = "header__sign">
                     <Link to='/signup' className='header__sign-link'>Регистрация</Link>
-                    <button className="header__sign-button" onClick= {() => history.push('./signin')}>Войти</button>
+                    <button className="header__sign-button" onClick= {() => history.push('./signin')} type='button'>Войти</button>
                 </div>
             </Header>
 

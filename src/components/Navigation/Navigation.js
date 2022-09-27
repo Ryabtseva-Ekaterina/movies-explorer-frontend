@@ -19,7 +19,7 @@ function Navigation ({isOpen, onClose}) {
                         <img className='navigation__button-image' src={ButtonImage} alt='Профиль' />
                     </div>
                 </Link>
-                <button className='navigation__closeButton' onClick={onClose} />
+                <button className='navigation__closeButton' onClick={onClose} type='button' />
             </div>    
         </section>
     )

@@ -27,7 +27,7 @@ function Register () {
                 <input className='form__input' type='password' required name = 'password' id='password'/>
                 <span class='form__input-error-text'>Что-то пошло не так...</span>
                 
-                <button className='form__button'>Зарегистрироваться</button>
+                <button className='form__button' type='submit'>Зарегистрироваться</button>
             </Form>
 
             <p className="register__text">Уже зарегистрированы? 

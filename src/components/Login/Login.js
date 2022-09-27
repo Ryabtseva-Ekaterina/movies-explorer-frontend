@@ -24,7 +24,7 @@ function Login () {
                 <input className='form__input' type='password' required name = 'password' id='password'/>
                 <span class='form__input-error-text'>Что-то пошло не так...</span>
                 
-                <button className='form__button form__button-login'>Войти</button>
+                <button className='form__button form__button-login' type='submit'>Войти</button>
             </Form>
 
             <p className="login__text">Ещё не зарегистрированы? 

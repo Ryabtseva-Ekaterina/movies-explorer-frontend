@@ -1,22 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './Profile.css';
-import Header from '../Header/Header.js';
-import Navigation from '../Navigation/Navigation.js';
 
 function Profile (props) {
     return (
         <section className="profile">
-
-            <Header className='header'>
-                <Navigation>
-                    <Link to='/movies' className='navigation__link'>Фильмы</Link>
-                    <Link to='saved_movies' className='navigation__link'>Сохраненные фильмы</Link>
-                </Navigation>
-
-                <button className='header__profile-burger'/>
-            </Header>
-
+            
             <div className='profile__content'>
                 <h1 className='profile__title'> Привет, {props.name}</h1>
 

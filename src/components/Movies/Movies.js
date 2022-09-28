@@ -1,23 +1,15 @@
 import React from 'react';
 import './Movies.css';
-import Header from '../Header/Header.js';
-import Footer from '../Footer/Footer.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
-import Navigation from '../Navigation/Navigation.js';
+;
 
-function Movies (props) {
+function Movies () {
     
     return (
         <section>
-            <Header className='header'>
-                <Navigation 
-                isOpen = {props.isOpen}
-                onClose = {props.onClose}/>
-                <button className='header__profile-burger' type='button' onClick = {()=>props.onNavigation(true)}/>
-            </Header>
-
+           
             <SearchForm />
 
             <Preloader />
@@ -28,7 +20,6 @@ function Movies (props) {
                 <button className='movies__moreMovies-button' type='button'>Ещё</button>
             </section>
 
-            <Footer />
         </section>
     );
 }

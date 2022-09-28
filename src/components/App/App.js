@@ -11,6 +11,7 @@ import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Navigation from "../Navigation/Navigation";
 
 function App ( ) {
 
@@ -42,20 +43,43 @@ function App ( ) {
                     </Route>
 
                     <Route  exact={true} path = '/movies'>
-                        <Movies 
-                        isOpen = {isNavigationOpen}
-                        onClose = {onClose}
-                        onNavigation = {setIsNavigationOpen}/>
+
+                        <Header className='header'>
+                            <Navigation 
+                            isOpen = {isNavigationOpen}
+                            onClose = {onClose}/>
+                            <button className='header__profile-burger' type='button' onClick = {()=>setIsNavigationOpen(true)}/>
+                        </Header>
+
+                        <Movies/>
+
+                        <Footer />
                     </Route>
 
                     <Route exact={true} path = '/saved_movies'>
-                        <SavedMovies 
-                         isOpen = {isNavigationOpen}
-                         onClose = {onClose}
-                         onNavigation = {setIsNavigationOpen}/>
+                        <Header className='header'>
+                            <Navigation
+                                isOpen = {isNavigationOpen}
+                                onClose = {onClose}/>
+                    
+                                <button className='header__profile-burger' onClick = {()=>setIsNavigationOpen(true)} type='button'/>
+                            </Header>
+
+                        <SavedMovies />
+
+                         <Footer />
                     </Route>
 
                     <Route exact={true} path = '/profile'>
+
+                        <Header className='header'>
+                            <Navigation  
+                                isOpen = {isNavigationOpen}
+                                onClose = {onClose}/>
+
+                            <button className='header__profile-burger' onClick = {()=>setIsNavigationOpen(true)} type='button'/>
+                        </Header>
+
                         <Profile />
                     </Route>
 

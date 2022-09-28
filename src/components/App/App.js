@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Link, useHistory} from 'react-router-dom';
 import './App.css';
 
 import NotFound from '../NotFound/NotFound.js';
@@ -9,9 +9,12 @@ import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Profile from '../Profile/Profile.js';
 import Register from '../Register/Register.js';
 import Login from '../Login/Login.js';
-
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function App ( ) {
+
+    const history = useHistory();
 
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
 
@@ -26,7 +29,16 @@ function App ( ) {
 
                 <Switch>
                     <Route exact={true} path = '/'>
+                        <Header className =" header header-main">
+                            <div className = "header__sign">
+                                <Link to='/signup' className='header__sign-link'>Регистрация</Link>
+                                <button className="header__sign-button" onClick= {() => history.push('./signin')} type='button'>Войти</button>
+                            </div>
+                        </Header>
+
                         <Main />
+                        
+                        <Footer />
                     </Route>
 
                     <Route  exact={true} path = '/movies'>

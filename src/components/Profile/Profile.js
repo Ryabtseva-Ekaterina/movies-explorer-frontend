@@ -32,11 +32,11 @@ function Profile (props) {
                     <input className='profile__edit-form-input' name='email' type='email' id='email' required value={props.email || ''} />
                     <span class='profile__edit-form-input-text'>Что-то пошло не так...</span> 
                     
-                    <button className='profile__edit-form-button'>Редактировать</button>
+                    <button className='profile__edit-form-button' type='submit'>Редактировать</button>
 
                 </form>
 
-                <button className='profile__exit-button'>Выйти из аккаунта</button>
+                <button className='profile__exit-button' type='submit'>Выйти из аккаунта</button>
             </div>
         </section>     
     );

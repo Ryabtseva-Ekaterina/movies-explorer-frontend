@@ -70,7 +70,7 @@
 
 @media screen and (max-width: 768px) {
     .techs__tabs {
-        margin: 0 10px;
+        margin: 0 50px;
         justify-content: flex-start;
     }
 }

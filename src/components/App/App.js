@@ -92,7 +92,7 @@ function App ( ) {
     }
 
     function onRegister(data) {
-        auth.register(data.email, data.name, data.password)
+        auth.register(data.email,data.password, data.name)
             .then((res) => {
                 if (res) {
                     onAuthorize(data);

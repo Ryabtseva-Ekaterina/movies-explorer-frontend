@@ -17,8 +17,12 @@
     }
 }
 
-.header-main {
+.header_main {
     background-color: #073042;
+}
+
+.header_none {
+    display: none;
 }
 
 .header__logo {

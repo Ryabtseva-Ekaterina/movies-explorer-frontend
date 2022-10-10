@@ -2,6 +2,10 @@
     margin: 70px 70px 30px;
 }
 
+.movieCardList_notvisible{
+    display: none;
+}
+
 @media screen  and (max-width: 768px) {
     .movieCardList{
         margin: 70px 30px 30px;

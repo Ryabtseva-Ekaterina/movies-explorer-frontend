@@ -2,13 +2,19 @@ import React from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import SearchForm from '../SearchForm/SearchForm.js';
 
-function SavedMovies () {
+function SavedMovies ({movieCards, onDeleteMovie, searchMovie, onFilterShortMovie, movies, onShort, isShort}) {
+
     return (
         <section>
 
-            <SearchForm />
+            <SearchForm searchMovie = {searchMovie} 
+                        movies = {movieCards}
+                        onShort = {onShort}
+                        isShort = {isShort}/>
 
-            <MoviesCardList  className='moviesCard__deleteButton'/>
+            <MoviesCardList  movieCards = {movieCards}
+                             onDeleteMovie={onDeleteMovie}/>
+
 
         </section>
     );

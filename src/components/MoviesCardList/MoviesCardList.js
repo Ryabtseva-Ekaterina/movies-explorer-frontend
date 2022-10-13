@@ -60,7 +60,7 @@ function MoviesCardList ({movieCards, className, isLoad, isSavedMovie, onDeleteM
                         onDeleteMovie={onDeleteMovie}
                         handleAction= {handleAction}>
                       </MoviesCard>
-                ))}
+                ))} 
 
             </ul>
 

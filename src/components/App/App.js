@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Route, Switch,  useHistory, useLocation} from 'react-router-dom';
+import {Route, Switch,  useHistory, useLocation, Redirect} from 'react-router-dom';
 import './App.css';
 import * as auth from '../../utils/auth.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
@@ -32,42 +32,46 @@ function App ( ) {
     const [isLoad, setIsLoad] = useState(false);
     const [isShort, setIsShort] = useState(false);
     const [message, setMessage] = useState('');
-
+    const [searchedSavedMoviesCard, setSearchedSavedMovieCards] = useState([]);
+    const [isSearched, setIsSearched] = useState(false);
    
     useEffect (() => {
         tokenCheck()
     }, []);
 
     useEffect (() => {
-        getSavedMovies()
+        if (loggedIn){
 
-        moviesApi.getCards()
-        .then ((data) => {
-            localStorage.setItem(data, JSON.stringify(data));
-            setMovies (
-            JSON.parse(localStorage.getItem(data))
-            ) 
-        })
-        .catch ((err) => {
-            console.log(err);
-            setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
-        })
+            moviesApi.getCards()
+            .then ((data) => {
+                localStorage.setItem('movies', JSON.stringify(data));
+                setMovies (
+                JSON.parse(localStorage.getItem('movies'))
+                ) 
+            })
+            .catch ((err) => {
+                console.log(err);
+                setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+            })
 
-        if (localStorage.getItem('movieCards')) {
-            const loadMovies = JSON.parse(localStorage.getItem('movieCards'));
-            setMovieCards(loadMovies.map((movie) => ({
-                movieId: movie.id,
-                country: movie.country,
-                image: `https://api.nomoreparties.co/${movie.image.url}`,
-                description: movie.description,
-                duration: movie.duration,
-                nameEN: movie.nameEN,
-                nameRU: movie.nameRU,
-                year: movie.year,
-                trailerLink: movie.trailerLink,
-                director: movie.director,
-                thumbnail: `https://api.nomoreparties.co/${movie.image.url}`
-            })));
+            getSavedMovies()
+            
+            if (localStorage.getItem('movieCards')) {
+                const loadMovies = JSON.parse(localStorage.getItem('movieCards'));
+                setMovieCards(loadMovies.map((movie) => ({
+                    movieId: movie.id,
+                    country: movie.country,
+                    image: `https://api.nomoreparties.co/${movie.image.url}`,
+                    description: movie.description,
+                    duration: movie.duration,
+                    nameEN: movie.nameEN,
+                    nameRU: movie.nameRU,
+                    year: movie.year,
+                    trailerLink: movie.trailerLink,
+                    director: movie.director,
+                    thumbnail: `https://api.nomoreparties.co/${movie.image.url}`
+                })));
+            } 
         }
     }, [loggedIn]);
 
@@ -86,7 +90,7 @@ function App ( ) {
                 setLoggedIn(true);
                 setCurrentUser(data);
                 mainApi.getToken(token);
-                history.push('/movies')
+                history.push(location.pathname);
             })
             .catch((err) => console.log(err));
     }
@@ -117,7 +121,7 @@ function App ( ) {
     function onUpdateUser (data) {
         mainApi.updateUser(data)
             .then((userStats) => {
-                setCurrentUser(userStats)
+                setCurrentUser(userStats);
                 setMessage('Данные успешно обновлены')
         })
             .catch ((err) => {
@@ -127,7 +131,10 @@ function App ( ) {
     }
 
     function searchMovie (text, movies) {
-        const moviesFilter = movies.filter ((item) => (item.nameRU.toLowerCase().includes(text.toLowerCase())) && (isShort ? item.duration <= 40 : ' '));
+        console.log(movies);
+        console.log(isShort);
+        const moviesFilter = movies.filter ((item) => (item.nameRU.toLowerCase().includes(text.toLowerCase())) && (isShort===true ? item.duration <= 40 : ' '));
+        console.log(moviesFilter);
         if (location.pathname === '/movies') {
             setIsLoad(true);
             setTimeout (() => {
@@ -157,7 +164,9 @@ function App ( ) {
             localStorage.setItem('movieCards', JSON.stringify(moviesFilter))
 
         } else {
-            setSavedMovieCards(moviesFilter)
+            console.log(moviesFilter);
+            setIsSearched(true);
+            setSearchedSavedMovieCards(moviesFilter)
         }
     }
 
@@ -237,7 +246,10 @@ function App ( ) {
 
     function onLogAut () {
         localStorage.removeItem('token')
+        localStorage.removeItem('text')
+        localStorage.removeItem('movies')
         localStorage.removeItem('movieCards')
+        localStorage.removeItem('isShort')
         setLoggedIn(false);
         history.push('/')
     }
@@ -257,7 +269,7 @@ function App ( ) {
 
                     <Switch>
 
-                        <Route exact={true} path = '/'>
+                        <Route exact path = '/'>
 
                             <Main  loggedIn = {loggedIn}
                                     isOpen = {isNavigationOpen}
@@ -267,16 +279,16 @@ function App ( ) {
                         </Route>
 
                         <Route path = '/signup'>
-                            <Register 
-                                onSubmit = {onRegister}
-                                isErrorMessage={errorMessage}/>
+                            {loggedIn ? <Redirect to= '/movies'/> : 
+                                <Register onSubmit = {onRegister}
+                                isErrorMessage={errorMessage}/>}            
                         </Route>
 
                         <Route path = '/signin'>
-                            <Login onSubmit = {onAuthorize}/>
+                            {loggedIn ? <Redirect to= '/movies'/> : <Login onSubmit = {onAuthorize}/>} 
                         </Route>
 
-                        <ProtectedRoute  exact={true} path = '/movies'
+                        <ProtectedRoute  path = '/movies'
                             loggedIn = {loggedIn}
                             component = {Movies}
                             movieCards = {movieCards}
@@ -294,21 +306,24 @@ function App ( ) {
 
                         </ProtectedRoute>
 
-                        <ProtectedRoute exact={true} path = '/saved_movies'
+                        <ProtectedRoute path = '/saved_movies'
+                            getSavedMovies = {getSavedMovies}
                             loggedIn = {loggedIn}
                             component = {SavedMovies}
                             isOpen = {isNavigationOpen}
                             onClose = {onClose}
                             onClick = {setIsNavigationOpen}
                             movieCards = {savedMoviesCard}
+                            searchedMovie = {searchedSavedMoviesCard}
                             onDeleteMovie = {onDeleteMovie}
                             searchMovie = {searchMovie}
                             onShort = {setIsShort}
-                            isShort = {isShort}>
+                            isShort = {isShort}
+                            isSearched = {isSearched}> 
                           
                         </ProtectedRoute>
 
-                        <ProtectedRoute exact={true} path = '/profile'
+                        <ProtectedRoute path = '/profile'
                             loggedIn = {loggedIn}
                             component={Profile}
                             isOpen = {isNavigationOpen}
@@ -316,10 +331,11 @@ function App ( ) {
                             onClick = {setIsNavigationOpen}
                             onLogAut = {onLogAut}
                             onUpdateUser ={onUpdateUser}
-                            message= {message}>
+                            message= {message}>    
+
                         </ProtectedRoute>
 
-                        <Route exact={true} path = '*'>
+                        <Route path = '*'>
                             <NotFound />
                         </Route>
 

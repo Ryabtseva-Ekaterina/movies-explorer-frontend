@@ -29,7 +29,7 @@ function Login ({onSubmit}) {
                     name = 'email' 
                     id='email'
                     {...register('email', {required: true,
-                        pattern: /([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})/})}/>
+                        pattern: /([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,})\.([A-z]{2,8})/})}/>
                 <span className='form__input-error-text'>
                     {errors.email?.type === "required" && "Пожалуйста, заполните поле"} 
                     {errors.email?.type === "pattern" && "Поле содержит недопустимые символы"}

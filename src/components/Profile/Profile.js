@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { useForm} from 'react-hook-form';
 import './Profile.css';
 import {CurrentUserContext} from '../../context/CurrentUserContext.js';
@@ -10,10 +10,14 @@ function Profile (props) {
     const user = useContext(CurrentUserContext);
     
     function submit (data) {
-        props.onUpdateUser ({
-            name: data.name,
-            email: data.email,
-        });
+        if (data.name !== user.name || data.email !== user.email) {
+            props.onUpdateUser ({
+                name: data.name,
+                email: data.email,
+            });
+        } else {
+            return !isValid
+        }
     }
 
     return (
@@ -34,7 +38,7 @@ function Profile (props) {
                             maxLength: 30, 
                             value: user.name,
                             pattern: /[a-zа-яё ]/i})}
-                        />
+                    />
                     <span className='profile__edit-form-input-text'>
                         {errors.name?.type === "required" && "Пожалуйста, заполните поле"} 
                         {errors.name?.type === "pattern" && "Поле содержит недопустимые символы"}
@@ -51,7 +55,7 @@ function Profile (props) {
                         id='email'  
                         {...register('email', {required: true,
                             value: user.email,
-                            pattern: /([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})/})}/>
+                            pattern: /([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,})\.([A-z]{2,8})/})}/>
                     <span className='profile__edit-form-input-text'>
                         {errors.email?.type === "required" && "Пожалуйста, заполните поле"} 
                         {errors.email?.type === "pattern" && "Поле содержит недопустимые символы"}

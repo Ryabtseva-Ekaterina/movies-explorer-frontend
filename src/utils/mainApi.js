@@ -1,6 +1,8 @@
+import { Base_Url } from "./constants.js";
+
 class MainApi {
     constructor () {
-        this.baseurl = 'https://api.movies-exp.ryabtseva.nomoredomains.sbs';
+        this.baseurl = Base_Url;
     }
 
     handleResponse (res)  {

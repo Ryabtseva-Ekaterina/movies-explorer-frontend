@@ -4,6 +4,7 @@ import './App.css';
 import * as auth from '../../utils/auth.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
+import {ShortTime} from '../../utils/constants.js'
 
 import NotFound from '../NotFound/NotFound.js';
 import Main from '../Main/Main.js';
@@ -32,6 +33,7 @@ function App ( ) {
     const [isLoad, setIsLoad] = useState(false);
     const [isShort, setIsShort] = useState(false);
     const [message, setMessage] = useState('');
+    const [messageOfSearch, setMessageOfSearch] = useState('');
     const [searchedSavedMoviesCard, setSearchedSavedMovieCards] = useState([]);
     const [isSearched, setIsSearched] = useState(false);
    
@@ -51,7 +53,7 @@ function App ( ) {
             })
             .catch ((err) => {
                 console.log(err);
-                setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+                setMessageOfSearch('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
             })
 
             getSavedMovies()
@@ -131,18 +133,16 @@ function App ( ) {
     }
 
     function searchMovie (text, movies) {
-        console.log(movies);
-        console.log(isShort);
-        const moviesFilter = movies.filter ((item) => (item.nameRU.toLowerCase().includes(text.toLowerCase())) && (isShort===true ? item.duration <= 40 : ' '));
-        console.log(moviesFilter);
+        const moviesFilter = movies.filter ((item) => (item.nameRU.toLowerCase().includes(text.toLowerCase())) && (isShort===true ? item.duration <= ShortTime : ' '));
         if (location.pathname === '/movies') {
+            setMessageOfSearch('')
             setIsLoad(true);
             setTimeout (() => {
                 setIsLoad(false);
                 if (moviesFilter.length === 0) {
-                    setMessage('Ничего не найдено')
+                    setMessageOfSearch('Ничего не найдено')
                 } else {
-                    setMessage('')
+                    setMessageOfSearch('')
                 }
                 setMovieCards(
                     moviesFilter.map((movie) => ({
@@ -164,8 +164,12 @@ function App ( ) {
             localStorage.setItem('movieCards', JSON.stringify(moviesFilter))
 
         } else {
-            console.log(moviesFilter);
             setIsSearched(true);
+            if (moviesFilter.length === 0) {
+                setMessageOfSearch('Ничего не найдено')
+            } else {
+                setMessageOfSearch('')
+            }
             setSearchedSavedMovieCards(moviesFilter)
         }
     }
@@ -250,6 +254,8 @@ function App ( ) {
         localStorage.removeItem('movies')
         localStorage.removeItem('movieCards')
         localStorage.removeItem('isShort')
+        setMovieCards([]);
+        setSearchedSavedMovieCards([]);
         setLoggedIn(false);
         history.push('/')
     }
@@ -302,7 +308,7 @@ function App ( ) {
                             onShort = {setIsShort}
                             isShort = {isShort}
                             handleAction={handleAction}
-                            message= {message}>
+                            message= {messageOfSearch}>
 
                         </ProtectedRoute>
 
@@ -319,7 +325,10 @@ function App ( ) {
                             searchMovie = {searchMovie}
                             onShort = {setIsShort}
                             isShort = {isShort}
-                            isSearched = {isSearched}> 
+                            isSearched = {isSearched}
+                            onSearched = {setIsSearched}
+                            message= {messageOfSearch}
+                            onSetMessage = {setMessageOfSearch}> 
                           
                         </ProtectedRoute>
 
@@ -331,7 +340,8 @@ function App ( ) {
                             onClick = {setIsNavigationOpen}
                             onLogAut = {onLogAut}
                             onUpdateUser ={onUpdateUser}
-                            message= {message}>    
+                            message= {message}
+                            onSetMessage = {setMessage}>    
 
                         </ProtectedRoute>
 

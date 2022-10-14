@@ -1,6 +1,7 @@
-export const BASE_URL = 'https://api.movies-exp.ryabtseva.nomoredomains.sbs';
+import { Base_Url } from "./constants.js";
+
 export const register = (email, password, name) => {
-    return fetch (`${BASE_URL}/signup`, {
+    return fetch (`${Base_Url}/signup`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -20,7 +21,7 @@ export const register = (email, password, name) => {
 }
 
 export const authorize = (email, password) => {
-    return fetch (`${BASE_URL}/signin`, {
+    return fetch (`${Base_Url}/signin`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -40,7 +41,7 @@ export const authorize = (email, password) => {
 }
 
 export const getUserInfo = (token) => {
-    return fetch (`${BASE_URL}/users/me`, {
+    return fetch (`${Base_Url}/users/me`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

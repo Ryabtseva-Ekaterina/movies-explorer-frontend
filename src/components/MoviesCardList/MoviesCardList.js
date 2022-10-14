@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './MovieCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
+import {CountOfMoviesPhone, CountOfMoviesPC} from '../../utils/constants.js';
 
 function MoviesCardList ({movieCards, className, isLoad, isSavedMovie, onDeleteMovie, handleAction}) {
 
@@ -10,7 +11,7 @@ function MoviesCardList ({movieCards, className, isLoad, isSavedMovie, onDeleteM
 
     function loadMovieCards () {
 
-        if (display > 900) {
+        if (display > 1006) {
             setMoviesOnDisplay(12);
         } else if (display > 750) {
             setMoviesOnDisplay(8);
@@ -29,12 +30,12 @@ function MoviesCardList ({movieCards, className, isLoad, isSavedMovie, onDeleteM
     }
 
     function loadMoreMoviesCards () {
-        if (display > 900) {
-            setMoviesOnDisplay (moviesOnDisplay + 4)
+        if (display > 1006) {
+            setMoviesOnDisplay (moviesOnDisplay + CountOfMoviesPC)
         } else if (display > 750) {
-            setMoviesOnDisplay (moviesOnDisplay + 2)
+            setMoviesOnDisplay (moviesOnDisplay + CountOfMoviesPhone)
         } else if (display < 750) {
-            setMoviesOnDisplay (moviesOnDisplay + 2)
+            setMoviesOnDisplay (moviesOnDisplay + CountOfMoviesPhone)
         }
     }
 
@@ -64,7 +65,7 @@ function MoviesCardList ({movieCards, className, isLoad, isSavedMovie, onDeleteM
 
             </ul>
 
-            { (movieCards.length >= moviesOnDisplay || movieCards.length <! 3) ? (
+            { (movieCards.length > moviesOnDisplay || movieCards.length <! 3) ? (
                 <section className='movies__moreMovies'>
                     <button className='movies__moreMovies-button' type='button' onClick={() => loadMoreMoviesCards()}> Ещё </button>
                 </section>

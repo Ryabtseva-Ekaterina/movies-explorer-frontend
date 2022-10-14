@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import FilterCheckBox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm ({searchMovie, movies, onShort, isShort, movieCards}) {
+function SearchForm ({searchMovie, movies, onShort, isShort}) {
 
     const [newValue, setNewValue] = useState(localStorage.getItem('text') || '');
 

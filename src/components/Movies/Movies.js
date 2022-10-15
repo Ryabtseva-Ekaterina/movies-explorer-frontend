@@ -3,22 +3,28 @@ import './Movies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
-;
 
-function Movies () {
-    
+function Movies ({movieCards, searchMovie, message, movies, isLoad, onShort, isShort, isSavedMovie, handleAction}) {
+
     return (
         <section>
-           
-            <SearchForm />
 
-            <Preloader />
+            <SearchForm searchMovie = {searchMovie} 
+                movies={movies}
+                onShort = {onShort}
+                isShort = {isShort}
+                movieCards={movieCards}
+            />
 
-            <MoviesCardList className={'moviesCard__button'}/>
+            <Preloader isLoad = {isLoad}/>
 
-            <section className='movies__moreMovies'>
-                <button className='movies__moreMovies-button' type='button'>Ещё</button>
-            </section>
+            <p className = 'movies__massage'> {message}</p>
+
+            <MoviesCardList movieCards = {movieCards}
+                            isSavedMovie = {isSavedMovie}
+                            isLoad = {isLoad}
+                            handleAction = {handleAction}>
+            </MoviesCardList>
 
         </section>
     );

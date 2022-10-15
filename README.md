@@ -9,6 +9,10 @@ Movies-Explorer-frontend - представляет собой фронтенд 
 
 [Ссылка на макет ](https://disk.yandex.ru/d/LYaeO_7dk3XiZA)
 
+[Ссылка на сайт ](http://movies-explorer.ryabtseva.nomoredomains.sbs/)
+
+[Pull request ](https://github.com/Ryabtseva-Ekaterina/movies-explorer-frontend/pull/2)
+
 
 
 

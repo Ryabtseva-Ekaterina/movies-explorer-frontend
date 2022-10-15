@@ -1,3 +1,7 @@
+.form {
+    position: relative;
+}
+
 .form__label {
     font-size: 10px;
     font-weight: normal;
@@ -46,8 +50,17 @@
     border: none;
 }
 
-.form__button:hover {
-    background-color: #093989;
+.form__button_disabled {
+    background-color: #818b9b;
+    width: 396px;
+    height: 45px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 3px;
+    margin-top: 179px;
+    margin-bottom: 16px;
+    border: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -77,4 +90,20 @@
     display:block;
     margin-top: -10px;
     margin-bottom: 10px;
+}
+
+.form__submit-error {
+    display: none;
+}
+
+.form__submit-error_visible {
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: normal;
+    text-align: center;
+    display: block;
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 396px;
 }

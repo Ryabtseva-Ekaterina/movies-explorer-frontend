@@ -4,7 +4,7 @@ import './Form.css';
 function Form (props) {
     return (
         <section>
-        <form className='form'>
+        <form className='form' onSubmit={props.onSubmit}>
 
             { props.children }
     

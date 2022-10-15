@@ -16,6 +16,7 @@
 
 .searchForm__Form {
     position: relative;
+    height: 50px;
 }
 
 .searchForm__input{
@@ -52,7 +53,7 @@
     padding: 0;
     position:absolute;
     right: 0;
-    bottom: 13px;
+    bottom: 33px;
 }
 
 @media screen and (max-width: 540px) {
@@ -63,4 +64,11 @@
 
 .searchForm__button:hover {
     background-image: url(../../images/find-hover.svg);
+}
+
+.searchForm__input-error-text {
+    padding-top: 10px;
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: normal;
 }

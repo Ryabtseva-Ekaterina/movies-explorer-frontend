@@ -81,7 +81,7 @@
     border: none;
     color: white;
     padding: 0;
-    margin: 220px auto 16px;
+    margin: 110px auto 16px;
     cursor: pointer;
     width: 410px;
     text-align: center;
@@ -115,4 +115,11 @@
 
 .profile__exit-button:hover {
     color: #c90035;
+}
+
+.profile__massage {
+    text-align: center;
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 110px;
 }

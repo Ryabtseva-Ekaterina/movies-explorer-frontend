@@ -20,12 +20,15 @@
     }
 }
 
+.moviesCard__link {
+    margin-bottom: 14px;;
+}
+
 .moviesCard__image {
     width: 270px;
     height: 151px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-    margin-bottom: 14px;
 }
 
 @media screen  and (max-width: 768px) {
@@ -47,6 +50,7 @@
 }
 
 .moviesCard__title {
+    width: 206px;
     font-size: 13px;
     font-weight: 500;
     margin: 0;
@@ -71,7 +75,7 @@
 }
 
 
-.moviesCard__button:focus {
+.moviesCard__button_active {
     background-color: #2BE080;
     cursor: pointer;
     width: 16px;

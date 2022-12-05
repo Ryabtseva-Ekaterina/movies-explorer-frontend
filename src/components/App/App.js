@@ -249,11 +249,7 @@ function App ( ) {
     }
 
     function onLogAut () {
-        localStorage.removeItem('token')
-        localStorage.removeItem('text')
-        localStorage.removeItem('movies')
-        localStorage.removeItem('movieCards')
-        localStorage.removeItem('isShort')
+        localStorage.clear();
         setMovieCards([]);
         setSearchedSavedMovieCards([]);
         setLoggedIn(false);

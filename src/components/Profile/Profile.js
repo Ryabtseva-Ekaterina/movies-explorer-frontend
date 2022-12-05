@@ -1,22 +1,34 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { useForm} from 'react-hook-form';
 import './Profile.css';
 import {CurrentUserContext} from '../../context/CurrentUserContext.js';
 
 function Profile (props) {
     
-    const { register, formState: {errors, isValid}, handleSubmit } = useForm({mode: 'onChange'});
+    const { register, formState: {errors, isValid}, handleSubmit, watch } = useForm({mode: 'onChange'});
+
+    const [activeButton, setActiveButton] = useState(false);
 
     const user = useContext(CurrentUserContext);
     
+    watch((data, {name, email}) => {
+        if (data.name !== user.name || data.email !== user.email) {
+            setActiveButton(true);
+        } else {
+            setActiveButton(false);
+            return !isValid 
+        }
+    })
+  
     function submit (data) {
         if (data.name !== user.name || data.email !== user.email) {
             props.onUpdateUser ({
                 name: data.name,
                 email: data.email,
             });
+            setActiveButton(false);
         } else {
-            return !isValid
+            return !isValid 
         }
     }
 
@@ -63,7 +75,7 @@ function Profile (props) {
                     
                     <p className = 'profile__massage'> {props.message}</p>
 
-                    <button disabled={!isValid} className={'profile__edit-form-button' +  (!isValid?' form__button_disabled':'')} type='submit'>Редактировать</button>
+                    <button disabled={!isValid} className={(!activeButton?'form__button_disabled':'profile__edit-form-button')} type='submit'>Редактировать</button>
 
                 </form>
 

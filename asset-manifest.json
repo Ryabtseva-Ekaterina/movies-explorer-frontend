@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "./static/css/main.18b057a7.css",
+    "main.js": "./static/js/main.905c11e4.js",
+    "static/media/foto.png": "./static/media/foto.6b88915d8ca868b4ca51.png",
+    "static/media/Inter-Medium.woff": "./static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Regular.woff": "./static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/Inter-Medium.woff2": "./static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-Regular.woff2": "./static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/landing-logo.svg": "./static/media/landing-logo.0b0563459964b6034a50885f7071e935.svg",
+    "static/media/logo.svg": "./static/media/logo.6c200069b2f1863c59c299afdb24ae93.svg",
+    "index.html": "./index.html",
+    "static/media/profile.svg": "./static/media/profile.17617a193665f3787fe0e52e11b29c3b.svg",
+    "static/media/delete-buttom-hover.svg": "./static/media/delete-buttom-hover.e8d773dbd22b9cc2cf13.svg",
+    "static/media/delete-button.svg": "./static/media/delete-button.cae0c609ec61b15e64e8.svg",
+    "static/media/find-hover.svg": "./static/media/find-hover.40f116cbd0052437b29a.svg",
+    "static/media/find.svg": "./static/media/find.f117383ecf23b7597aba.svg",
+    "static/media/close-button-hover.svg": "./static/media/close-button-hover.4f21e7e770636b891007.svg",
+    "static/media/close-popup.svg": "./static/media/close-popup.47a9344c64aa39423eaf.svg",
+    "static/media/burger-activ.svg": "./static/media/burger-activ.e036dfbb8dbd0449d313.svg",
+    "static/media/arrow.svg": "./static/media/arrow.05057c86da485874920766452579d149.svg",
+    "static/media/burger.svg": "./static/media/burger.4b1de763c38dc0445aab.svg",
+    "main.18b057a7.css.map": "./static/css/main.18b057a7.css.map",
+    "main.905c11e4.js.map": "./static/js/main.905c11e4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18b057a7.css",
+    "static/js/main.905c11e4.js"
+  ]
+}

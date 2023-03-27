@@ -134,7 +134,7 @@ function App ( ) {
 
     function searchMovie (text, movies) {
         const moviesFilter = movies.filter ((item) => (item.nameRU.toLowerCase().includes(text.toLowerCase())) && (isShort===true ? item.duration <= ShortTime : ' '));
-        if (location.pathname === '/movies-explorer-frontend/movies') {
+        if (location.pathname === '/movies') {
             setMessageOfSearch('')
             setIsLoad(true);
             setTimeout (() => {
@@ -253,7 +253,7 @@ function App ( ) {
         setMovieCards([]);
         setSearchedSavedMovieCards([]);
         setLoggedIn(false);
-        history.push('/movies-explorer-frontend')
+        history.push('/')
     }
 
     return (
@@ -271,7 +271,7 @@ function App ( ) {
 
                     <Switch>
 
-                        <Route exact path = '/movies-explorer-frontend'>
+                        <Route exact path = '/'>
 
                             <Main  loggedIn = {loggedIn}
                                     isOpen = {isNavigationOpen}
@@ -280,17 +280,17 @@ function App ( ) {
 
                         </Route>
 
-                        <Route path = '/movies-explorer-frontend/signup'>
-                            {loggedIn ? <Redirect to= '/movies-explorer-frontend/movies'/> : 
+                        <Route path = '/signup'>
+                            {loggedIn ? <Redirect to= '/movies'/> : 
                                 <Register onSubmit = {onRegister}
                                 isErrorMessage={errorMessage}/>}            
                         </Route>
 
-                        <Route path = '/movies-explorer-frontend/signin'>
-                            {loggedIn ? <Redirect to= '/movies-explorer-frontend/movies'/> : <Login onSubmit = {onAuthorize}/>} 
+                        <Route path = '/signin'>
+                            {loggedIn ? <Redirect to= '/movies'/> : <Login onSubmit = {onAuthorize}/>} 
                         </Route>
 
-                        <ProtectedRoute  path = '/movies-explorer-frontend/movies'
+                        <ProtectedRoute  path = '/movies'
                             loggedIn = {loggedIn}
                             component = {Movies}
                             movieCards = {movieCards}
@@ -308,7 +308,7 @@ function App ( ) {
 
                         </ProtectedRoute>
 
-                        <ProtectedRoute path = '/movies-explorer-frontend/saved_movies'
+                        <ProtectedRoute path = '/saved_movies'
                             getSavedMovies = {getSavedMovies}
                             loggedIn = {loggedIn}
                             component = {SavedMovies}
@@ -328,7 +328,7 @@ function App ( ) {
                           
                         </ProtectedRoute>
 
-                        <ProtectedRoute path = '/movies-explorer-frontend/profile'
+                        <ProtectedRoute path = '/profile'
                             loggedIn = {loggedIn}
                             component={Profile}
                             isOpen = {isNavigationOpen}

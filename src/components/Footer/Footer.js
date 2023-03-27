@@ -7,7 +7,7 @@ function Footer () {
     const location = useLocation();
 
     return (
-        <footer className={'footer' + (location.pathname === '/signin' ? ' footer_none' : '') +  (location.pathname === '/signup' ? ' footer_none' : '') + (location.pathname === '/profile' ? ' footer_none' : '')}>
+        <footer className={'footer' + (location.pathname === '/movies-explorer-frontend/signin' ? ' footer_none' : '') +  (location.pathname === '/signup' ? ' footer_none' : '') + (location.pathname === '/profile' ? ' footer_none' : '')}>
             <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <hr className="footer__line"/>
             <div className="footer__copyright">

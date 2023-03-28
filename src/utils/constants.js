@@ -1,5 +1,5 @@
 const ShortTime = 40;
-const Base_Url = 'https://api.movies-exp.ryabtseva.nomoredomains.sbs';
+const Base_Url = 'https://movies-explorer-api-henna.vercel.app/';
 const CountOfMoviesPC = 3;
 const CountOfMoviesPhone = 2;
 

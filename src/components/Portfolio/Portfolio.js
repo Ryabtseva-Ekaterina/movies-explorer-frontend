@@ -28,7 +28,7 @@ function Portfolio() {
                     <hr className="portfolio__line"/>
 
                     <li className = 'portfolio__link'>
-                        <a href='http://mesto.ryabtseva.nomoredomains.sbs' target='blank' className='portfolio__nav-link'>
+                        <a href='https://react-mesto-api-full-gules.vercel.app/' target='blank' className='portfolio__nav-link'>
                             <p className='portfolio__link-text'>Одностраничное приложение</p>
                             <img className='portfolio__link-image' src={arrow} alt='стрелка'/>
                         </a>
